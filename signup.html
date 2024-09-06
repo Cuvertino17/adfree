@@ -7,7 +7,7 @@
     <title>Sign Up Page</title>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap"
         rel="stylesheet">
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
+     
     <style>
         * {
             box-sizing: border-box;
@@ -345,14 +345,16 @@
                 <img src="images/dropdown.svg" alt="Arrow Down">
             </div>
             <div class="dropdown-content">
-                <div class="dropdown-item" data-value="x">
-                    Plan X
-                </div>
                 <div class="dropdown-item" data-value="y">
-                    Plan Y
+                    $5/month or $55/year <span style="color: orange; font-weight: bold;">🔥 Popular</span>
+                 </div>
+                <div class="dropdown-item" data-value="x">
+                    $3/month or $33/year
                 </div>
+               
             </div>
         </div>
+        
 
         <!-- Continue Button -->
         <button class="continue-btn" id="continueBtn">Continue</button>
@@ -372,27 +374,8 @@
         </div>
         <script type="module">
 
-            const CLIENT_ID = 'YOUR_CLIENT_ID_HERE'; // Replace with your client ID
-
-            // Google Sign-In initialization
-            gapi.load('auth2', function () {
-                gapi.auth2.init({ client_id: CLIENT_ID });
-            });
-
-            // Google Sign-In button click handler
-            document.getElementById('googleBtn').addEventListener('click', () => {
-                const auth2 = gapi.auth2.getAuthInstance();
-                auth2.signIn().then(googleUser => {
-                    // Get user profile information
-                    const profile = googleUser.getBasicProfile();
-                    const email = profile.getEmail();
-                    document.querySelector('.email-input').value = email;
-
-                    // Optionally, handle additional logic here, such as showing other fields or updating UI
-                }).catch(error => {
-                    console.error('Error during Google Sign-In: ', error);
-                });
-            });
+             
+ 
 
 
             import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
@@ -460,31 +443,34 @@
                 }
             });
 
-            // Google Sign-In Mockup (replace with actual Google sign-in logic)
-            document.getElementById('googleBtn').addEventListener('click', () => {
-                // Simulate Google sign-in and set email
-                const googleEmail = 'user@example.com'; // Replace with actual email from Google
-                document.getElementById('emailInput').value = googleEmail;
-                // Proceed to next steps or show other options
-            });
+             
+             
 
             // Dropdown functionality
-            document.querySelectorAll('.dropdown').forEach(dropdown => {
-                const button = dropdown.querySelector('.dropdown-button');
-                const content = dropdown.querySelector('.dropdown-content');
+            // Dropdown functionality
+            // Dropdown functionality
+document.querySelectorAll('.dropdown').forEach(dropdown => {
+    const button = dropdown.querySelector('.dropdown-button');
+    const content = dropdown.querySelector('.dropdown-content');
 
-                button.addEventListener('click', () => {
-                    dropdown.classList.toggle('show');
-                });
+    button.addEventListener('click', () => {
+        dropdown.classList.toggle('show');
+        if (dropdown.classList.contains('show')) {
+            content.style.display = 'block';
+        } else {
+            content.style.display = 'none';
+        }
+    });
 
-                content.querySelectorAll('.dropdown-item').forEach(item => {
-                    item.addEventListener('click', () => {
-                        const text = item.textContent.trim();
-                        button.querySelector('span').textContent = text;
-                        dropdown.classList.remove('show');
-                    });
-                });
-            });
+    content.querySelectorAll('.dropdown-item').forEach(item => {
+        item.addEventListener('click', () => {
+            const text = item.textContent.trim();
+            button.querySelector('span').textContent = text;
+            dropdown.classList.remove('show');
+            content.style.display = 'none';
+        });
+    });
+});
         </script>
 
     </div>
