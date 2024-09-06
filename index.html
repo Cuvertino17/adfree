@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap"
+        rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>Adfree VPN</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #F7F8F9;
+            color: #161A1D;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            background-color: inherit;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 50px;
+            height: auto;
+            margin-right: 10px;
+            border-radius: 10px;
+        }
+
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+        }
+
+        .theme-toggle {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .theme-toggle input {
+            display: none;
+        }
+
+        .theme-toggle label {
+            background-color: #ddd;
+            border-radius: 15px;
+            width: 50px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 3px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .theme-toggle .slider {
+            background-color: #ffffff;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            background-image: url('images/sun.png');
+            background-size: 16px;
+            background-repeat: no-repeat;
+            background-position: center;
+            transition: transform 0.3s, background-image 0.3s;
+        }
+
+        .theme-toggle input:checked+label {
+            background-color: #007bff;
+        }
+
+        .theme-toggle input:checked+label .slider {
+            transform: translateX(25px);
+            background-image: url('images/moon.png');
+        }
+
+        .dark-mode {
+            background-color: #161A1D;
+            color: #F7F8F9;
+        }
+
+        .dark-mode .theme-toggle label {
+            background-color: #444;
+        }
+
+        .body-content {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            justify-content: space-between;
+            padding: 30px;
+            max-width: 900px;
+            margin: auto;
+            gap: 20px;
+        }
+
+        .left-content {
+            flex: 65%;
+        }
+
+        .left-content h1 {
+            font-size: 30px;
+            margin-bottom: 20px;
+            margin-top: 70px;
+            text-align: left;
+        }
+
+        .left-content h2 {
+            /* font-size: 30px; */
+            margin-bottom: 20px;
+            margin-top: 90px;
+            text-align: left;
+        }
+
+        .left-content p {
+            /* font-weight: bold; */
+            font-size: 15px;
+            line-height: 1.5;
+            text-align: left;
+        }
+
+        .right-content {
+            flex: 35%;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .right-content img {
+            margin: 30px;
+            margin-top: 60px;
+            max-width: 90%;
+            height: auto;
+        }
+
+        .buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 24px;
+            width: 200px;
+            /* Set a fixed width */
+            height: 50px;
+            /* Set a fixed height */
+            font-weight: bold;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            text-decoration: none;
+            color: #161A1D;
+            background-color: #fff;
+            transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+        }
+
+        .button:hover {
+            background-color: #f0f0f0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .dark-mode .button {
+            background-color: #333;
+            color: #fff;
+            border: 1px solid #444;
+        }
+
+        .dark-mode .button:hover {
+            background-color: #444;
+        }
+
+        #get-button {
+            background-color: #0582ff;
+            /* Green color for Get Notion Free button */
+            color: #ebf5fe;
+            /* White text color */
+        }
+
+        #request-button {
+            background-color: #ebf5fe;
+            /* Blue color for Request a Demo button */
+            color: #0582ff;
+            /* White text color */
+        }
+        .dark-mode .links a {
+    color: #fff; /* Change the color to white */
+}
+        @media (max-width: 768px) {
+            .body-content {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .left-content,
+            .right-content {
+
+                flex: none;
+                width: 100%;
+                margin-top: -80px;
+            }
+
+            .right-content {
+                margin-top: -50px;
+                max-height: none;
+            }
+
+            .buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        .links {
+            text-align: center;
+            margin-top: 1em;
+            margin-bottom:30px ;
+        }
+
+        .links a {
+            color: #333;
+            text-decoration: none;
+            font-size: 1em;
+            margin-right: 30px;
+            font-weight: bold;
+            /* Make the links bold */
+        }
+
+        .links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    
+    <!-- Header Section -->
+    <header class="header">
+        <div class="logo">
+            <img src="images/shield.png" alt="Adfree Logo">
+            <div class="title">Adfree VPN</div>
+        </div>
+        <div class="header-right">
+            <div class="theme-toggle">
+                <input type="checkbox" id="theme-switch">
+                <label for="theme-switch">
+                    <div class="slider"></div>
+                </label>
+            </div>
+        </div>
+    </header>
+
+    <!-- Body Section -->
+    <section class="body-content">
+        <div class="left-content">
+            <h1>Get Fast VPN and Block Ads All at a Low Cost!</h1>
+            <p>
+                Enjoy high-speed VPN and ad blocking for a fraction of the price. Our service removes ads from all your
+                apps and devices, including YouTube and Spotify, making your browsing experience smoother and more
+                affordable.
+            </p>
+
+
+
+
+            <div class="buttons">
+                <a id="get-button" href="#" class="button">Join Early Access</a>
+                <a id="request-button" href="https://www.buymeacoffee.com/cuvertino" class="button">Support Us</a>
+            </div>
+        </div>
+        <div class="right-content">
+            <img src="/images/internet.svg" alt="Avg I Have">
+        </div>
+    </section>
+    <section class="body-content">
+        <div class="left-content">
+            <h2>Why Choose Us?</h2>
+            <p>
+                Enjoy lightning-fast VPN speeds at a fraction of the cost of top services. Our built-in ad blocker
+                eliminates ads across all apps and games, so you don’t have to pay extra for ad-free experiences in each
+                one.
+            </p>
+        </div>
+        <div class="right-content">
+            <img src="/images/security.svg" alt="Avg I Have">
+        </div>
+    </section>
+    <section class="body-content">
+        <div class="left-content">
+            <h2>Robust VPN Experience</h2>
+            <p>
+                Experience blazing-fast speeds with our top-rated VPN, all at an unbeatable price. Enjoy premium
+                performance without the premium cost.
+            </p>
+
+        </div>
+        <div class="right-content">
+            <img src="/images/vpn.svg" alt="Avg I Have">
+        </div>
+    </section>
+    <section class="body-content">
+        <div class="left-content">
+            <h2>Comprehensive Ad Blocking</h2>
+            <p>
+                Say goodbye to paying for ad-free upgrades across apps and games. With our service, you get universal ad
+                blocking for all your apps in one affordable package.
+            </p>
+
+        </div>
+        <div class="right-content">
+            <img src="/images/noads.svg" alt="Avg I Have">
+        </div>
+    </section>
+
+    <script>
+        const toggleSwitch = document.getElementById('theme-switch');
+        const bodyElement = document.body;
+
+        toggleSwitch.addEventListener('change', () => {
+            bodyElement.classList.toggle('dark-mode');
+        });
+    </script>
+    <!-- Bottom Buttons Section -->
+    <div class="links">
+        <a href="terms.html">Terms of Service</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="refund.html">Refund Policy</a>
+    </div>
+</body>
+
+</html>

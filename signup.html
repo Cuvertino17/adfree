@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap"
+        rel="stylesheet">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            display: flex;
+            margin-top: 40px;
+            justify-content: center;
+            align-items: start;
+            min-height: 100vh;
+        }
+
+        .appbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 60px;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            padding: 0 1rem;
+        }
+
+        .appbar .logo img {
+            margin-left: 10px;
+            margin-top: 10px;
+            width: 30px;
+        }
+
+
+
+        .bartitle {
+            display: flex;
+            align-items: center;
+        }
+
+        .pipe {
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        .title-text {
+            margin-top: 5px;
+            font-size: 1rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .container {
+            text-align: center;
+            background-color: #f5f5f5;
+            max-width: 360px;
+            width: 100%;
+            padding: 1rem 1.5rem;
+            margin-top: 80px;
+        }
+
+        .title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-align: start;
+        }
+
+        .button {
+            width: 100%;
+            background-color: transparent;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 0.6rem;
+            margin: 0.3rem 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-size: 0.875rem;
+        }
+
+        .button img {
+            width: 18px;
+            height: 18px;
+            margin-right: 8px;
+        }
+
+        .button:hover {
+            background-color: transparent;
+        }
+
+        .email-input {
+            width: 100%;
+            padding: 0.6rem;
+            margin: 0.5rem 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: transparent;
+        }
+
+        .continue-btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 0.6rem;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        .continue-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .footer {
+            font-size: 0.75rem;
+            color: #888;
+            margin-top: 1rem;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            margin: 0.5rem 0;
+        }
+
+        .dropdown-button {
+            padding: 0.6rem;
+            background-color: transparent;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 0.875rem;
+            width: 100%;
+            cursor: pointer;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .dropdown-button img {
+            width: 18px;
+            height: 18px;
+            margin-right: 8px;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 100%;
+            top: 100%;
+            left: 0;
+            z-index: 1;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+
+        .dropdown-item {
+            padding: 0.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+
+        .dropdown-item img {
+            width: 18px;
+            height: 18px;
+            margin-right: 8px;
+        }
+
+        .dropdown-item:hover {
+            background-color: #f0f0f0;
+        }
+
+        .dropdown.show .dropdown-content {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .title {
+                font-size: 1.5rem;
+            }
+
+            .appbar .logo img {
+                margin-left: 10px;
+                width: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0.5rem;
+            }
+
+            body {
+                margin-top: 10px;
+                display: flex;
+                margin-right: 20px;
+                margin-left: 20px;
+            }
+
+            .title {
+                margin-bottom: 30px;
+                font-size: 1.3rem;
+            }
+        }
+
+        .success-screen {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .success-screen .content {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .success-screen .content h1 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .success-screen .content p {
+            margin-bottom: 2rem;
+        }
+
+        .success-screen .content .btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .success-screen .content .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .error {
+            color: red;
+            margin-top: 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        .continue-btn.processing {
+            background-color: #0056b3;
+            cursor: not-allowed;
+        }
+
+        .continue-btn.processing::after {
+            content: 'Signing Up...';
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- App Bar -->
+    <div class="appbar">
+        <div class="logo">
+            <img src="images/shield.png" alt="Shield Logo">
+        </div>
+        <div class="bartitle">
+            <span class="pipe">|</span>
+            <span class="title-text">Adfree</span>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Title -->
+        <div class="title">
+            <span style="color: #333;">Secure Your Early Access</span><br>
+            <span style="color: #b2aba6;">Create your Adfree account</span>
+        </div>
+
+        <!-- Buttons -->
+        <!-- <div class="g-signin2" data-onsuccess="onSignIn"></div> -->
+
+        <!-- <div class="button" id="googleBtn">
+            <img src="https://img.icons8.com/color/48/000000/google-logo.png" alt="Google Logo">
+            Continue with Google
+        </div>
+        <p>or</p> -->
+        <input type="email" class="email-input" id="emailInput" placeholder="email">
+        <div class="error" id="emailError"></div>
+
+        <!-- Custom Dropdowns -->
+        <div class="dropdown" id="deviceDropdown">
+            <div class="dropdown-button">
+                <span id="deviceText">Choose your device</span>
+                <img src="images/dropdown.svg" alt="Arrow Down">
+            </div>
+            <div class="dropdown-content">
+                <div class="dropdown-item" data-value="android">
+                    <img src="https://img.icons8.com/color/48/000000/android-os.png" alt="Android Logo">
+                    Android
+                </div>
+                <div class="dropdown-item" data-value="ios">
+                    <img src="https://img.icons8.com/color/48/000000/ios-logo.png" alt="iOS Logo">
+                    iOS
+                </div>
+            </div>
+        </div>
+
+        <div class="dropdown" id="planDropdown">
+            <div class="dropdown-button">
+                <span id="planText">Choose your plan</span>
+                <img src="images/dropdown.svg" alt="Arrow Down">
+            </div>
+            <div class="dropdown-content">
+                <div class="dropdown-item" data-value="x">
+                    Plan X
+                </div>
+                <div class="dropdown-item" data-value="y">
+                    Plan Y
+                </div>
+            </div>
+        </div>
+
+        <!-- Continue Button -->
+        <button class="continue-btn" id="continueBtn">Continue</button>
+
+
+        <!-- Footer Text -->
+        <div class="footer">
+            With Adfree VPN, you pick your plan and try it first no charges until you're happy. Your satisfaction comes
+            first!
+        </div>
+        <div class="success-screen" id="successScreen">
+            <div class="content">
+                <h1>Success!</h1>
+                <p>Your sign up was successful. Please check your email to verify your account.</p>
+                <button class="btn" id="closeSuccess">Close</button>
+            </div>
+        </div>
+        <script type="module">
+
+            const CLIENT_ID = 'YOUR_CLIENT_ID_HERE'; // Replace with your client ID
+
+            // Google Sign-In initialization
+            gapi.load('auth2', function () {
+                gapi.auth2.init({ client_id: CLIENT_ID });
+            });
+
+            // Google Sign-In button click handler
+            document.getElementById('googleBtn').addEventListener('click', () => {
+                const auth2 = gapi.auth2.getAuthInstance();
+                auth2.signIn().then(googleUser => {
+                    // Get user profile information
+                    const profile = googleUser.getBasicProfile();
+                    const email = profile.getEmail();
+                    document.querySelector('.email-input').value = email;
+
+                    // Optionally, handle additional logic here, such as showing other fields or updating UI
+                }).catch(error => {
+                    console.error('Error during Google Sign-In: ', error);
+                });
+            });
+
+
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
+            import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-analytics.js";
+            import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js";
+
+            const firebaseConfig = {
+                apiKey: "AIzaSyDgQ605R2uHYEEc4V-SIgl5ky_YQ1QXHzo",
+                authDomain: "adfree-d0745.firebaseapp.com",
+                projectId: "adfree-d0745",
+                storageBucket: "adfree-d0745.appspot.com",
+                messagingSenderId: "287658741723",
+                appId: "1:287658741723:web:9f86e0b5ffab13f7d14c90",
+                measurementId: "G-ZZ0ZGML4GE"
+            };
+
+            const app = initializeApp(firebaseConfig);
+            const analytics = getAnalytics(app);
+            const db = getFirestore(app);
+
+            // Validate Email Function
+            function validateEmail(email) {
+                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return re.test(String(email).toLowerCase());
+            }
+
+            // Handle form submission
+            document.getElementById('continueBtn').addEventListener('click', async () => {
+                const email = document.getElementById('emailInput').value;
+                const device = document.getElementById('deviceText').textContent;
+                const plan = document.getElementById('planText').textContent;
+                const emailError = document.getElementById('emailError');
+                emailError.textContent = '';
+
+                // Validate fields
+                if (!email || !validateEmail(email)) {
+                    emailError.textContent = 'Please enter a valid email address.';
+                    return;
+                }
+                if (device === 'Choose your device') {
+                    alert('Please select a device.');
+                    return;
+                }
+                if (plan === 'Choose your plan') {
+                    alert('Please select a plan.');
+                    return;
+                }
+
+                // Show processing state
+                const continueBtn = document.getElementById('continueBtn');
+                continueBtn.classList.add('processing');
+
+                try {
+                    await addDoc(collection(db, 'users'), {
+                        email: email,
+                        device: device,
+                        plan: plan
+                    });
+                    document.getElementById('successScreen').style.display = 'flex';
+                } catch (e) {
+                    console.error('Error adding document: ', e);
+                } finally {
+                    // Hide processing state
+                    continueBtn.classList.remove('processing');
+                }
+            });
+
+            // Google Sign-In Mockup (replace with actual Google sign-in logic)
+            document.getElementById('googleBtn').addEventListener('click', () => {
+                // Simulate Google sign-in and set email
+                const googleEmail = 'user@example.com'; // Replace with actual email from Google
+                document.getElementById('emailInput').value = googleEmail;
+                // Proceed to next steps or show other options
+            });
+
+            // Dropdown functionality
+            document.querySelectorAll('.dropdown').forEach(dropdown => {
+                const button = dropdown.querySelector('.dropdown-button');
+                const content = dropdown.querySelector('.dropdown-content');
+
+                button.addEventListener('click', () => {
+                    dropdown.classList.toggle('show');
+                });
+
+                content.querySelectorAll('.dropdown-item').forEach(item => {
+                    item.addEventListener('click', () => {
+                        const text = item.textContent.trim();
+                        button.querySelector('span').textContent = text;
+                        dropdown.classList.remove('show');
+                    });
+                });
+            });
+        </script>
+
+    </div>
+</body>
+
+</html>
