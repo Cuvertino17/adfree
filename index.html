@@ -289,15 +289,15 @@
 
 
             <div class="buttons">
-                <a id="get-button" href="#" class="button">Join Early Access</a>
-                <a id="request-button" href="https://www.buymeacoffee.com/cuvertino" class="button">Support Us</a>
+                <a id="get-button" href="/signup.html" class="button">Join Early Access</a>
+                <a id="request-button" href="#" class="button">Why Us</a>
             </div>
         </div>
         <div class="right-content">
             <img src="adfree/images/internet.svg" alt="Avg I Have">
         </div>
     </section>
-    <section class="body-content">
+    <section class="body-content" id="why-choose-us">
         <div class="left-content">
             <h2>Why Choose Us?</h2>
             <p>
@@ -337,13 +337,26 @@
         </div>
     </section>
 
-    <script>
+<script>
         const toggleSwitch = document.getElementById('theme-switch');
         const bodyElement = document.body;
 
         toggleSwitch.addEventListener('change', () => {
             bodyElement.classList.toggle('dark-mode');
         });
+
+        document.addEventListener('DOMContentLoaded', () => {
+        const supportButton = document.getElementById('request-button');
+        
+        supportButton.addEventListener('click', (event) => {
+            event.preventDefault(); // Prevent the default button click behavior
+            
+            // Scroll to the "Why Choose Us?" section
+            document.getElementById('why-choose-us').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
     </script>
     <!-- Bottom Buttons Section -->
     <div class="links">
