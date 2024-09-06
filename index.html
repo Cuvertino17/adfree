@@ -207,9 +207,12 @@
             color: #0582ff;
             /* White text color */
         }
+
         .dark-mode .links a {
-    color: #fff; /* Change the color to white */
-}
+            color: #fff;
+            /* Change the color to white */
+        }
+
         @media (max-width: 768px) {
             .body-content {
                 flex-direction: column;
@@ -226,7 +229,7 @@
             }
 
             .right-content {
-                margin-top: -50px;
+                margin-top: -10px;
                 max-height: none;
             }
 
@@ -239,7 +242,7 @@
         .links {
             text-align: center;
             margin-top: 1em;
-            margin-bottom:30px ;
+            margin-bottom: 30px;
         }
 
         .links a {
@@ -258,7 +261,7 @@
 </head>
 
 <body>
-    
+
     <!-- Header Section -->
     <header class="header">
         <div class="logo">
@@ -291,6 +294,8 @@
             <div class="buttons">
                 <a id="get-button" href="signup.html" class="button">Join Early Access</a>
                 <a id="request-button" href="#" class="button">Why Us</a>
+           
+                
             </div>
         </div>
         <div class="right-content">
@@ -333,11 +338,11 @@
 
         </div>
         <div class="right-content">
-            <img src="images/noads.svg" alt="Avg I Have">
+            <img src="/images/noads.svg" alt="Avg I Have">
         </div>
     </section>
 
-<script>
+    <script>
         const toggleSwitch = document.getElementById('theme-switch');
         const bodyElement = document.body;
 
@@ -346,17 +351,17 @@
         });
 
         document.addEventListener('DOMContentLoaded', () => {
-        const supportButton = document.getElementById('request-button');
-        
-        supportButton.addEventListener('click', (event) => {
-            event.preventDefault(); // Prevent the default button click behavior
-            
-            // Scroll to the "Why Choose Us?" section
-            document.getElementById('why-choose-us').scrollIntoView({
-                behavior: 'smooth'
+            const supportButton = document.getElementById('request-button');
+
+            supportButton.addEventListener('click', (event) => {
+                event.preventDefault(); // Prevent the default button click behavior
+
+                // Scroll to the "Why Choose Us?" section
+                document.getElementById('why-choose-us').scrollIntoView({
+                    behavior: 'smooth'
+                });
             });
         });
-    });
     </script>
     <!-- Bottom Buttons Section -->
     <div class="links">
